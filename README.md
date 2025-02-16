@@ -19,8 +19,7 @@ This project implements a simplified AI-driven supply chain optimization system,
 
 ```
 ├── data/
-│   ├── historical_sales.csv
-│   └── inventory_levels.csv
+│   └── retail_store_inventory.csv
 ├── src/
 │   ├── demand_forecasting.py
 │   ├── inventory_monitoring.py
@@ -28,12 +27,6 @@ This project implements a simplified AI-driven supply chain optimization system,
 │   ├── supplier_management.py
 │   ├── dynamic_pricing.py
 │   └── ensemble_models.py
-├── models/
-│   ├── base_models/
-│   │   ├── model1.pkl
-│   │   ├── model2.pkl
-│   │   └── model3.pkl
-│   └── ensemble_model.pkl
 ├── tests/
 │   ├── test_forecasting.py
 │   └── test_ensemble.py
@@ -79,4 +72,4 @@ Contributions are welcome! Please feel free to submit a Pull Request.
 
 ## License
 
-This project is licensed under the MIT License.
+This project is licensed under the  Apache License.

@@ -1,0 +1,55 @@
+This project implements a simplified version of McDonald's AI-driven supply chain optimization system. Here's an overview of the key components and implementation details:
+
+## Demand Forecasting
+
+The `demand_forecasting.py` module uses historical sales data to predict future product demand. It likely employs machine learning algorithms such as ARIMA, Prophet, or neural networks to analyze patterns and generate forecasts[1][5]. The module could incorporate external factors like seasonality, promotions, and weather conditions to improve accuracy[2].
+
+## Inventory Monitoring
+
+`inventory_monitoring.py` tracks real-time inventory levels across locations. It interfaces with point-of-sale systems and warehouse management software to maintain up-to-date stock information[7]. This module enables proactive inventory management and helps prevent stockouts.
+
+## Stock Replenishment
+
+The `stock_replenishment.py` module automates restocking decisions based on demand forecasts and current inventory levels. It uses AI algorithms to optimize order quantities and timing, considering factors like lead times, storage capacity, and perishability[5][8].
+
+## Supplier Management
+
+`supplier_management.py` optimizes supplier selection and order placement. It likely uses AI to evaluate supplier performance, predict delivery times, and allocate orders among multiple suppliers to minimize risks and costs[9].
+
+## Dynamic Pricing
+
+The `dynamic_pricing.py` module adjusts prices based on demand and inventory levels. It uses machine learning algorithms to analyze market conditions and optimize pricing strategies, similar to McDonald's AI-driven menu recommendations[4][7].
+
+## Ensemble Models
+
+`ensemble_models.py` combines multiple AI models to improve overall accuracy and robustness. This approach leverages the strengths of different algorithms and can provide more reliable predictions across various scenarios[2][8].
+
+## Implementation Details
+
+1. The project uses Python for implementation, with dependencies listed in `requirements.txt`.
+2. Historical sales data and inventory levels are stored in CSV files in the `data/` directory.
+3. Trained models are saved as pickle files in the `models/` directory.
+4. Unit tests in the `tests/` directory ensure the reliability of key components.
+
+To use the system:
+
+1. Prepare historical sales and inventory data in the specified CSV formats.
+2. Install dependencies using `pip install -r requirements.txt`.
+3. Run `python src/ensemble_models.py` to generate forecasts and optimization recommendations.
+4. Review the console output or generated reports for insights and actions.
+
+This simplified version captures the essence of McDonald's AI-driven supply chain optimization, focusing on key aspects like demand forecasting, inventory management, and dynamic pricing. It provides a foundation for understanding and experimenting with AI-driven supply chain optimization techniques.
+
+Citations:
+[1] https://procureconsupplychain.wbresearch.com/blog/mcdonalds-ai-data-optimize-supply-chain
+[2] https://wjarr.com/sites/default/files/WJARR-2024-2394.pdf
+[3] https://corporate.mcdonalds.com/content/dam/sites/corp/nfl/pdf/McDonalds_PurposeImpact_ProgressReport_2021_2022.pdf
+[4] https://www.allthingssupplychain.com/the-amazing-supply-chain-of-mcdonalds/
+[5] https://www.hso.com/blog/how-ai-demand-forecasting-is-transforming-stock-management-and-order-fulfilment
+[6] https://foodfoundation.org.uk/sites/default/files/2023-07/McDonald's%20scorecard%202023.pdf
+[7] https://digitaldefynd.com/IQ/mcdonalds-using-ai-case-study/
+[8] https://www.inventory-planner.com/ai-demand-forecasting/
+[9] https://dfreight.org/blog/breaking-down-mcdonalds-supply-chain-strategy/
+[10] https://www.netstock.com/blog/guide-to-real-time-ai-driven-demand-forecasting/
+[11] https://en.ilos.com.br/transformacao-digital-no-supply-chain-do-mcdonalds-machine-learning-para-entender-antecipar-e-influenciar-a-demanda/
+
