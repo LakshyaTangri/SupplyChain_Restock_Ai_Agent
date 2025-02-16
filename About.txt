@@ -1,55 +1,272 @@
-This project implements a simplified version of McDonald's AI-driven supply chain optimization system. Here's an overview of the key components and implementation details:
+# Supply Chain AI System - Code Structure
 
-## Demand Forecasting
+## 1. Data Layer
 
-The `demand_forecasting.py` module uses historical sales data to predict future product demand. It likely employs machine learning algorithms such as ARIMA, Prophet, or neural networks to analyze patterns and generate forecasts[1][5]. The module could incorporate external factors like seasonality, promotions, and weather conditions to improve accuracy[2].
+### `data/schemas/data_schemas.py`
+```python
+class SupplyChainSchema:
+    # Column definitions
+    COLUMNS = [
+        'date', 'store_id', 'product_id', 'category', 'region',
+        'inventory_level', 'units_sold', 'units_ordered',
+        'demand_forecast', 'price', 'discount', 'weather_condition',
+        'holiday_promotion', 'competitor_pricing', 'seasonality'
+    ]
+    
+    # Data types and validation rules
+    SCHEMA_RULES = {
+        'date': 'datetime64[ns]',
+        'store_id': 'string',
+        'product_id': 'string',
+        'category': 'category',
+        'region': 'category',
+        'inventory_level': 'int64',
+        'units_sold': 'int64',
+        'units_ordered': 'int64',
+        'demand_forecast': 'float64',
+        'price': 'float64',
+        'discount': 'float64',
+        'weather_condition': 'category',
+        'holiday_promotion': 'int64',
+        'competitor_pricing': 'float64',
+        'seasonality': 'category'
+    }
+```
 
-## Inventory Monitoring
+### `data/processors/data_processor.py`
+```python
+class DataPreprocessor:
+    def __init__()
+    def load_data()
+    def clean_data()
+    def validate_schema()
+    def encode_categorical()
+    def normalize_numerical()
+    def create_time_features()
+    def split_train_test()
+    def create_sequences()
 
-`inventory_monitoring.py` tracks real-time inventory levels across locations. It interfaces with point-of-sale systems and warehouse management software to maintain up-to-date stock information[7]. This module enables proactive inventory management and helps prevent stockouts.
+class FeatureEngineer:
+    def __init__()
+    def calculate_moving_averages()
+    def create_lag_features()
+    def create_price_features()
+    def create_seasonal_features()
+    def create_weather_features()
+    def create_promotion_features()
+```
 
-## Stock Replenishment
+## 2. Model Layer
 
-The `stock_replenishment.py` module automates restocking decisions based on demand forecasts and current inventory levels. It uses AI algorithms to optimize order quantities and timing, considering factors like lead times, storage capacity, and perishability[5][8].
+### `models/demand/demand_forecaster.py`
+```python
+class DemandForecaster:
+    def __init__()
+    def build_model()
+    def train()
+    def predict()
+    def evaluate()
+    def save_model()
+    def load_model()
 
-## Supplier Management
+class TimeSeriesProcessor:
+    def __init__()
+    def create_sequences()
+    def prepare_features()
+    def prepare_targets()
+```
 
-`supplier_management.py` optimizes supplier selection and order placement. It likely uses AI to evaluate supplier performance, predict delivery times, and allocate orders among multiple suppliers to minimize risks and costs[9].
+### `models/inventory/inventory_monitor.py`
+```python
+class InventoryMonitor:
+    def __init__()
+    def track_inventory()
+    def predict_stockout()
+    def calculate_safety_stock()
+    def optimize_inventory_levels()
+    def generate_alerts()
 
-## Dynamic Pricing
+class InventoryPredictor:
+    def __init__()
+    def build_model()
+    def train()
+    def predict()
+    def evaluate()
+```
 
-The `dynamic_pricing.py` module adjusts prices based on demand and inventory levels. It uses machine learning algorithms to analyze market conditions and optimize pricing strategies, similar to McDonald's AI-driven menu recommendations[4][7].
+### `models/stock/replenishment_optimizer.py`
+```python
+class ReplenishmentOptimizer:
+    def __init__()
+    def calculate_reorder_point()
+    def optimize_order_quantity()
+    def generate_order_recommendations()
+    def evaluate_recommendations()
 
-## Ensemble Models
+class QLearningAgent:
+    def __init__()
+    def train()
+    def predict()
+    def update()
+    def save_model()
+    def load_model()
+```
 
-`ensemble_models.py` combines multiple AI models to improve overall accuracy and robustness. This approach leverages the strengths of different algorithms and can provide more reliable predictions across various scenarios[2][8].
+### `models/supplier/supplier_manager.py`
+```python
+class SupplierManager:
+    def __init__()
+    def rate_suppliers()
+    def optimize_supplier_selection()
+    def track_supplier_performance()
+    def generate_supplier_recommendations()
 
-## Implementation Details
+class SupplierRatingModel:
+    def __init__()
+    def build_model()
+    def train()
+    def predict()
+    def evaluate()
+```
 
-1. The project uses Python for implementation, with dependencies listed in `requirements.txt`.
-2. Historical sales data and inventory levels are stored in CSV files in the `data/` directory.
-3. Trained models are saved as pickle files in the `models/` directory.
-4. Unit tests in the `tests/` directory ensure the reliability of key components.
+### `models/pricing/price_optimizer.py`
+```python
+class PriceOptimizer:
+    def __init__()
+    def analyze_price_elasticity()
+    def optimize_prices()
+    def predict_revenue_impact()
+    def generate_price_recommendations()
 
-To use the system:
+class ReinforcementLearningAgent:
+    def __init__()
+    def build_model()
+    def train()
+    def predict()
+    def update_policy()
+```
 
-1. Prepare historical sales and inventory data in the specified CSV formats.
-2. Install dependencies using `pip install -r requirements.txt`.
-3. Run `python src/ensemble_models.py` to generate forecasts and optimization recommendations.
-4. Review the console output or generated reports for insights and actions.
+### `models/ensemble/ensemble_model.py`
+```python
+class EnsembleModel:
+    def __init__()
+    def combine_predictions()
+    def optimize_weights()
+    def evaluate_ensemble()
+    def update_model_weights()
 
-This simplified version captures the essence of McDonald's AI-driven supply chain optimization, focusing on key aspects like demand forecasting, inventory management, and dynamic pricing. It provides a foundation for understanding and experimenting with AI-driven supply chain optimization techniques.
+class ModelWeightOptimizer:
+    def __init__()
+    def calculate_performance_metrics()
+    def optimize_weights()
+    def validate_weights()
+```
 
-Citations:
-[1] https://procureconsupplychain.wbresearch.com/blog/mcdonalds-ai-data-optimize-supply-chain
-[2] https://wjarr.com/sites/default/files/WJARR-2024-2394.pdf
-[3] https://corporate.mcdonalds.com/content/dam/sites/corp/nfl/pdf/McDonalds_PurposeImpact_ProgressReport_2021_2022.pdf
-[4] https://www.allthingssupplychain.com/the-amazing-supply-chain-of-mcdonalds/
-[5] https://www.hso.com/blog/how-ai-demand-forecasting-is-transforming-stock-management-and-order-fulfilment
-[6] https://foodfoundation.org.uk/sites/default/files/2023-07/McDonald's%20scorecard%202023.pdf
-[7] https://digitaldefynd.com/IQ/mcdonalds-using-ai-case-study/
-[8] https://www.inventory-planner.com/ai-demand-forecasting/
-[9] https://dfreight.org/blog/breaking-down-mcdonalds-supply-chain-strategy/
-[10] https://www.netstock.com/blog/guide-to-real-time-ai-driven-demand-forecasting/
-[11] https://en.ilos.com.br/transformacao-digital-no-supply-chain-do-mcdonalds-machine-learning-para-entender-antecipar-e-influenciar-a-demanda/
+## 3. API Layer
 
+### `api/grpc/services.py`
+```python
+class DemandForecastService:
+    def get_forecast()
+    def train_model()
+    def update_model()
+
+class InventoryMonitorService:
+    def get_inventory_levels()
+    def update_inventory()
+    def get_alerts()
+
+class ReplenishmentService:
+    def get_replenishment_orders()
+    def optimize_reorder_points()
+    def update_orders()
+
+class SupplierService:
+    def get_supplier_ratings()
+    def update_supplier_data()
+    def get_recommendations()
+
+class PricingService:
+    def get_optimal_prices()
+    def train_pricing_model()
+    def update_prices()
+
+class EnsembleService:
+    def get_ensemble_prediction()
+    def update_ensemble_weights()
+```
+
+### `api/rest/endpoints.py`
+```python
+class DashboardAPI:
+    def get_metrics()
+    def upload_data()
+    def get_predictions()
+    def get_model_performance()
+    def update_configurations()
+```
+
+## 4. Dashboard Layer
+
+### `dashboard/components/data_upload.py`
+```python
+class DataUploadComponent:
+    def __init__()
+    def handle_file_upload()
+    def validate_data()
+    def process_upload()
+    def show_upload_status()
+```
+
+### `dashboard/components/visualization.py`
+```python
+class MetricsVisualizer:
+    def __init__()
+    def plot_predictions()
+    def plot_inventory_levels()
+    def plot_price_optimization()
+    def plot_supplier_ratings()
+    def plot_model_performance()
+```
+
+### `dashboard/components/configuration.py`
+```python
+class ModelConfiguration:
+    def __init__()
+    def update_model_params()
+    def update_training_config()
+    def update_prediction_config()
+    def save_configuration()
+```
+
+## 5. Utilities
+
+### `utils/metrics.py`
+```python
+class PerformanceMetrics:
+    def calculate_mae()
+    def calculate_mse()
+    def calculate_rmse()
+    def calculate_mape()
+    def calculate_accuracy()
+```
+
+### `utils/logger.py`
+```python
+class Logger:
+    def __init__()
+    def log_training()
+    def log_prediction()
+    def log_error()
+    def log_performance()
+```
+
+### `utils/config.py`
+```python
+class Configuration:
+    def __init__()
+    def load_config()
+    def save_config()
+    def update_config()
+    def validate_config()
+```

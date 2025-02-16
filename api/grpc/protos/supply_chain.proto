@@ -1,0 +1,89 @@
+syntax = "proto3";
+
+package supply_chain;
+
+service DemandForecast {
+    rpc GetForecast (ForecastRequest) returns (ForecastResponse);
+    rpc TrainModel (TrainingRequest) returns (TrainingResponse);
+    rpc UpdateModel (UpdateRequest) returns (UpdateResponse);
+}
+
+service InventoryMonitor {
+    rpc GetInventoryLevels (InventoryRequest) returns (InventoryResponse);
+    rpc UpdateInventory (UpdateInventoryRequest) returns (UpdateResponse);
+    rpc GetAlerts (AlertRequest) returns (AlertResponse);
+}
+
+service ReplenishmentOptimizer {
+    rpc GetReplenishmentOrders (ReplenishmentRequest) returns (ReplenishmentResponse);
+    rpc OptimizeReorderPoints (OptimizationRequest) returns (OptimizationResponse);
+}
+
+service PriceOptimizer {
+    rpc GetOptimalPrices (PriceRequest) returns (PriceResponse);
+    rpc UpdatePrices (UpdatePriceRequest) returns (UpdateResponse);
+}
+
+// Message definitions
+message ForecastRequest {
+    string product_id = 1;
+    int32 horizon = 2;
+    repeated float features = 3;
+}
+
+message ForecastResponse {
+    repeated float predictions = 1;
+    float confidence = 2;
+}
+
+message TrainingRequest {
+    bytes training_data = 1;
+    string model_type = 2;
+}
+
+message TrainingResponse {
+    string status = 1;
+    float performance_metric = 2;
+}
+
+message UpdateRequest {
+    string model_id = 1;
+    bytes new_data = 2;
+}
+
+message UpdateResponse {
+    string status = 1;
+    string message = 2;
+}
+
+message InventoryRequest {
+    string store_id = 1;
+    repeated string product_ids = 2;
+}
+
+message InventoryResponse {
+    repeated ProductInventory inventories = 1;
+}
+
+message ProductInventory {
+    string product_id = 1;
+    int32 current_level = 2;
+    int32 safety_stock = 3;
+    int32 reorder_point = 4;
+}
+
+message AlertRequest {
+    string store_id = 1;
+    string alert_type = 2;
+}
+
+message AlertResponse {
+    repeated Alert alerts = 1;
+}
+
+message Alert {
+    string product_id = 1;
+    string alert_type = 2;
+    string message = 3;
+    float severity = 4;
+}
