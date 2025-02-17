@@ -3,6 +3,7 @@ from concurrent import futures
 import logging
 from typing import Dict, List
 import numpy as np
+from api.grpc.protos import supply_chain_pb2
 
 class DemandForecastService:
     def __init__(self, model_manager):
@@ -17,7 +18,7 @@ class DemandForecastService:
                 features=np.array(request.features)
             )
             
-            return ForecastResponse(
+            return supply_chain_pb2.ForecastResponse(
                 predictions=predictions.tolist(),
                 confidence=0.95  # Example confidence value
             )
@@ -25,7 +26,7 @@ class DemandForecastService:
             self.logger.error(f"Error in GetForecast: {str(e)}")
             context.set_code(grpc.StatusCode.INTERNAL)
             context.set_details(str(e))
-            return ForecastResponse()
+            return supply_chain_pb2.ForecastResponse()
 
     def TrainModel(self, request, context):
         try:
@@ -34,7 +35,7 @@ class DemandForecastService:
                 model_type=request.model_type
             )
             
-            return TrainingResponse(
+            return supply_chain_pb2.TrainingResponse(
                 status="success",
                 performance_metric=performance
             )
@@ -42,7 +43,7 @@ class DemandForecastService:
             self.logger.error(f"Error in TrainModel: {str(e)}")
             context.set_code(grpc.StatusCode.INTERNAL)
             context.set_details(str(e))
-            return TrainingResponse(status="failed")
+            return supply_chain_pb2.TrainingResponse(status="failed")
 
 class InventoryMonitorService:
     def __init__(self, inventory_manager):
@@ -56,9 +57,9 @@ class InventoryMonitorService:
                 product_ids=request.product_ids
             )
             
-            return InventoryResponse(
+            return supply_chain_pb2.InventoryResponse(
                 inventories=[
-                    ProductInventory(
+                    supply_chain_pb2.ProductInventory(
                         product_id=inv['product_id'],
                         current_level=inv['current_level'],
                         safety_stock=inv['safety_stock'],
@@ -70,4 +71,4 @@ class InventoryMonitorService:
             self.logger.error(f"Error in GetInventoryLevels: {str(e)}")
             context.set_code(grpc.StatusCode.INTERNAL)
             context.set_details(str(e))
-            return InventoryResponse()
+            return supply_chain_pb2.InventoryResponse()
